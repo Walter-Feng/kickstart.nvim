@@ -599,6 +599,8 @@ require('lazy').setup({
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        latexindent = {},
+        texlab = {},
 
         lua_ls = {
           -- cmd = { ... },
@@ -689,6 +691,7 @@ require('lazy').setup({
         c = { 'clang-format' },
         cxx = { 'clang-format' },
         cuda = { 'clang-format' },
+        tex = { 'latexindent' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -872,6 +875,7 @@ require('lazy').setup({
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
+        disable = { 'latex' },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
@@ -973,6 +977,19 @@ require('lazy').setup({
     keys = {
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
+  },
+  {
+    'airblade/vim-rooter',
+  },
+  {
+    'lervag/vimtex',
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = 'zathura'
+      vim.g.vimtex_compiler_method = 'latexmk'
+    end,
   },
 }, {
   ui = {
