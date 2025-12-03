@@ -104,4 +104,32 @@ return {
   {
     'giuxtaposition/blink-cmp-copilot',
   },
+
+  {
+    'michaelb/sniprun',
+    branch = 'master',
+
+    build = 'sh install.sh 1',
+    -- do 'sh install.sh 1' if you want to force compile locally
+    -- (instead of fetching a binary from the github release). Requires Rust >= 1.65
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        '<leader>r',
+        mode = { 'n', 'v' },
+        '<cmd>SnipRun<cr>',
+        desc = 'Run current line',
+      },
+    },
+    config = function()
+      require('sniprun').setup {
+        repl_enable = { 'Mathematica_original' },
+        interpreter_options = {
+          Mathematica_original = {
+            use_javagraphics_if_contains = { 'Plot' },
+          },
+        },
+      }
+    end,
+  },
 }
