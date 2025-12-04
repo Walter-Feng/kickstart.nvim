@@ -81,6 +81,12 @@ return {
       vim.g.vimtex_view_method = 'zathura'
       vim.g.vimtex_compiler_method = 'latexmk'
       vim.g.vimtex_quickfix_mode = 0
+      local augroup = vim.api.nvim_create_augroup('VimtexGroup', { clear = true })
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'VimtexEventInitPost',
+        group = augroup,
+        command = 'VimtexCompile',
+      })
     end,
   },
 
