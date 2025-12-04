@@ -115,10 +115,16 @@ return {
     keys = {
       -- 👇 in this section, choose your own keymappings!
       {
-        '<leader>r',
+        '<leader>rr',
         mode = { 'n', 'v' },
         '<cmd>SnipRun<cr>',
         desc = 'Run current line',
+      },
+      {
+        '<leader>rc',
+        mode = { 'n', 'v' },
+        '<cmd>SnipClose<cr>',
+        desc = 'clean run info',
       },
     },
     config = function()
