@@ -589,7 +589,18 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         clangd = {},
-        pylsp = {},
+        -- pylsp is just so slow.
+        basedpyright = {
+          analysis = {
+            autoImportCompletions = true,
+            autoSearchPaths = true,
+            diagnosticMode = 'workspace',
+            -- somehow though, the following wouldn't work within config file.
+            -- it is adviced to make a json file at the root directory of the working project.
+            typeCheckingMode = 'off', -- standard, strict, all, off, basic.
+            useLibraryCodeForTypes = true,
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -687,7 +698,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'black' },
+        python = { 'ruff' },
         c = { 'clang-format' },
         cxx = { 'clang-format' },
         cuda = { 'clang-format' },
@@ -985,6 +996,7 @@ require('lazy').setup({
     },
   },
 })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
